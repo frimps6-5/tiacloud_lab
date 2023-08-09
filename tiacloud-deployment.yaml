@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tiacloud-deployment
+  namespace: tiacourses
+  labels:
+    app: app1
+    app: dev
+    tier: tiacloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tiacloud
+  template:
+    metadata:
+      labels:
+        app: tiacloud
+    spec:
+      containers:
+        - name: tiacloud-container
+          image: tiacloud:0.0.1
+#          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
